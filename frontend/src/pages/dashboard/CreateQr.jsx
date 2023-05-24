@@ -28,7 +28,7 @@ function CreateQr() {
 
   const formik = useFormik(
     {
-      initialValues: initialData,
+      initialValues: newFormData,
       enableReinitialize: true,
       onSubmit: async (values) => {
         // console.log(values)
@@ -211,6 +211,11 @@ function CreateQr() {
   };
 
   const addSocialInput = () => {
+    setNewFormData((prevState) => {
+      const updatedSocialsEmployee = [...prevState.socials_employee, { type: '', name: '', url: '' }];
+      return { ...prevState, socials_employee: updatedSocialsEmployee };
+
+    });
     formik.setValues((prevState) => {
       const updatedSocialsEmployee = [...prevState.socials_employee, { type: '', name: '', url: '' }];
       return { ...prevState, socials_employee: updatedSocialsEmployee };
@@ -218,6 +223,12 @@ function CreateQr() {
     });
   };
   const removeSocialInput = () => {
+    setNewFormData((prevState) => {
+      const updatedSocialsEmployee = [...prevState.socials_employee];
+      updatedSocialsEmployee.pop()
+      return { ...prevState, socials_employee: updatedSocialsEmployee };
+
+    });
     formik.setValues((prevState) => {
       const updatedSocialsEmployee = [...prevState.socials_employee];
       updatedSocialsEmployee.pop()
