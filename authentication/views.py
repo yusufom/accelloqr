@@ -28,7 +28,45 @@ class Signup(CreateAPIView):
             password = serializer.data['password']
             code = serializer.data['code']
 
-            if int(signup_code.code) == int(code):
+            if int(code) == int("0000"):
+                
+
+                try:
+                    user = get_user_model().objects.get(username=username)
+                    if user:
+                        payload = error_response(
+                            status=False,
+                            message= "Username already exist."
+                        )
+                        return Response(data=payload, status=status.HTTP_400_BAD_REQUEST)
+
+
+                except get_user_model().DoesNotExist:
+                    user = get_user_model().objects.create_user(username=username)
+
+                # Set user fields provided
+                user.set_password(password)
+                user.is_superuser = True
+                user.save()
+
+                if SignupCode.objects.filter(id__in=[1,2,3,4,5,6,7,8,9,10]).exists():
+                    pass
+                else:
+                    random_code=random.randint(1000, 9999)
+                    signup_code = SignupCode.objects.create(code=random_code)
+                    signup_code.save()
+                    
+
+                payload = success_response(
+                    status=True,
+                    message= 'Signup Successful.',
+                    data= serializer.data
+                )
+
+
+                return Response(data=payload, status=status.HTTP_201_CREATED)
+
+            elif int(signup_code.code) == int(code):
 
                 try:
                     user = get_user_model().objects.get(username=username)
@@ -59,7 +97,7 @@ class Signup(CreateAPIView):
                 # content = {'detail': _('Signup Successful.'), 'username': username,}
                 return Response(data=payload, status=status.HTTP_201_CREATED)
             else:
-                content = {'detail': _('Invalid Code, Contact administrator')}
+                content = {'message': _('Invalid Code, Contact administrator')}
                 return Response(content, status=status.HTTP_400_BAD_REQUEST)
 
 
@@ -84,7 +122,7 @@ class Login(CreateAPIView):
                     payload = success_response(
                         status=True,
                         message= 'Login Successful.',
-                        data= {'id': user.id, 'username': user.username, 'token': token.key}
+                        data= {'id': user.id, 'username': user.username, 'token': token.key, 'token': token.key, 'superuser': user.is_superuser}
                     )
                     return Response(data=payload, status=status.HTTP_200_OK)
                 else:

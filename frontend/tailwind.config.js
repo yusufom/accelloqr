@@ -26,6 +26,17 @@ module.exports = {
       backgroundImage: {
         'iphone': "url('./assets/iphone.webp')",
         'camera': 'radial-gradient(50% 50% at 50% 50%, #0D0E10 68.49%, #1A1B1D 100%);'
+      },
+      animation: {
+        loader: 'loader 0.6s infinite alternate'
+      },
+      keyframes: {
+        loader: {
+          to: {
+            opacity: 0.1,
+            transform: 'translate3d(0, -1rem, 0)'
+          }
+        }
       }
     },
   },

@@ -107,3 +107,23 @@ class EmployeeDeleteView(DestroyAPIView):
         employee.delete()
         res = {'message' : f"{employee.surname} {employee.firstName}'s Qr code successfully deleted"}
         return Response(res, status=status.HTTP_200_OK)
+    
+class EmployeeUpdateView(UpdateAPIView):
+
+    permission_classes = (AllowAny,)
+    serializer_class = EmployeeSerializer
+
+    def get_queryset(self, ref):
+        
+        employee = Employee.objects.get(ref=ref)
+        return employee
+
+
+    def put(self, request, ref):
+        employee = self.get_queryset(ref=ref) 
+        serializer = self.serializer_class(data=request.data, instance=employee)
+
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

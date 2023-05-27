@@ -1,36 +1,36 @@
-const initialData = { 
-    avatar: '', 
-    surname: '', 
-    firstName: '', 
-    gender: '', 
-    address: '', 
-    company: '', 
-    position: '', 
+const initialData = {
+    avatar: '',
+    surname: '',
+    firstName: '',
+    gender: '',
+    address: '',
+    company: '',
+    position: '',
     summary: '',
     telephone_employee: [
-        { 
+        {
             type: '',
             name: '',
-            phone: '' 
+            phone: ''
         },
     ],
     email_employee: [
-        { 
+        {
             name: '',
-            email: '' 
+            email: ''
         },
     ],
     website_employee: [
-        { 
-            name: '',
-            url: '' 
+        {
+            name: 'Bravewood',
+            url: 'https://www.bravewood.ng'
         },
     ],
     socials_employee: [
-        { 
-            type: '',
-            name: '',
-            url: ''
+        {
+            type: 'Facebook',
+            name: 'Facebook',
+            url: 'https://facebook.com/bravewood/'
         },
     ],
 }

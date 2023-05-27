@@ -4,6 +4,7 @@ from PIL import Image
 from django.urls import reverse
 import uuid
 from django.conf import settings
+from bulk_update_or_create import BulkUpdateOrCreateQuerySet
 
 
 
@@ -42,6 +43,8 @@ class Telephone(TimestampedModel):
     type = models.CharField(max_length=200, choices=(("Mobile","Mobile"), ("Home","Home"), ("Work","Work"), ("Fax","Fax"), ("Other","Other")))
     phone = models.CharField(max_length=12)
 
+    objects = BulkUpdateOrCreateQuerySet.as_manager()
+
     def __str__(self):
         return self.employee.surname
 
@@ -50,6 +53,8 @@ class Email(TimestampedModel):
     name = models.CharField(max_length=200)
     email = models.EmailField(max_length=300)
 
+    objects = BulkUpdateOrCreateQuerySet.as_manager()
+
     def __str__(self):
         return self.employee.surname
 
@@ -57,6 +62,8 @@ class Website(TimestampedModel):
     employee = models.ForeignKey(Employee, on_delete=models.CASCADE, related_name="website_employee")
     name = models.CharField(max_length=200)
     url = models.URLField(max_length=300)
+
+    objects = BulkUpdateOrCreateQuerySet.as_manager()
 
     def __str__(self):
         return self.employee.surname
@@ -74,6 +81,8 @@ class Socials(TimestampedModel):
     name = models.CharField(max_length=200)
     type = models.CharField(max_length=200, choices=social_type)
     url = models.URLField(max_length=300)
+
+    objects = BulkUpdateOrCreateQuerySet.as_manager()
 
     def __str__(self):
         return self.employee.surname

@@ -4,10 +4,10 @@ import { FiPhoneCall, FiMail, FiUserPlus } from 'react-icons/fi'
 import { FaHome, FaSuitcase } from 'react-icons/fa'
 import { MdLocationPin } from 'react-icons/md'
 import { BiMobile } from 'react-icons/bi'
-// import Avatar from '../assets/2.png'
+import Avatar from '../assets/profile.webp'
 
 
-function Phone({ data }) {
+function Phone({ data, edit }) {
     return (
         <div className='w-full z-[2] overflow-hidden flex flex-col relative max-w-[250px] h-[503px] 2xl:h-[725px] 2xl:max-w-[360px] '>
             <div className='bg-iphone w-[250px] h-[503px] bg-cover top-0 absolute left-0 z-[-1] bg-no-repeat 2xl:h-[725px] 2xl:w-[360px]' />
@@ -40,11 +40,15 @@ function Phone({ data }) {
                                 <div className='w-full'>
                                     <div className='bg-primary w-full flex items-center flex-col h-[300px] 2xl:h-[370px]'>
                                         <div className='w-[80px] h-[80px] 2xl:w-[100px] 2xl:h-[100px] border-4 border-secondary mt-[80px] 2xl:mt-[100px] rounded-full flex items-center justify-center bg-red-500 flex-row'>
-                                            {data.avatar &&
-                                                <div className='w-[70px] h-[70px] 2xl:w-[90px] 2xl:h-[90px] flex overflow-hidden items-center rounded-full flex-row justify-center'>
-                                                    <img src={URL.createObjectURL(data.avatar)} alt="" />
-                                                </div>
-                                            }
+                                            <div className='w-[70px] h-[70px] 2xl:w-[90px] 2xl:h-[90px] flex overflow-hidden items-center rounded-full flex-row justify-center'>
+                                                {edit ?
+                                                    <img src={`${process.env.REACT_APP_HOST_NAME}${data?.avatar}`} alt="" /> :
+                                                    data.avatar ?
+                                                        <img src={URL.createObjectURL(data.avatar)} alt="" /> :
+                                                        <img src={Avatar} alt="Standin profile" />
+
+                                                }
+                                            </div>
 
                                         </div>
                                         <h1 className='text-white text-lg 2xl:text-2xl font-bold mt-1'>{data.surname} {data.firstName}</h1>

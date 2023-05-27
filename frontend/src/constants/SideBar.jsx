@@ -4,17 +4,26 @@ import { Sidebar } from "flowbite-react";
 import { useEffect, useState } from "react";
 import { BiHome } from "react-icons/bi";
 import { BsPencilSquare } from "react-icons/bs";
+import { CiLogout } from "react-icons/ci";
+import {  useDispatch } from 'react-redux';
+import { logout } from '../actions/authSlice';
+
+
+
+
 
 
 
 
 
 const navigation = [
-  { id: 1, name: 'Dashboard', href: "/dashboard", icon: <BiHome className='h-5 w-5 -mr-3' />, },
-  { id: 2, name: 'New Qr', href: "/createqr", icon: <BsPencilSquare className='h-5 w-5 -mr-3' />, },
+  { id: 1, name: 'My Qrs', href: "/dashboard/", icon: <BiHome className='h-5 w-5 -mr-3' />, },
+  { id: 2, name: 'New Qr', href: "/create-qr/", icon: <BsPencilSquare className='h-5 w-5 -mr-3' />, },
 ]
 
 const SideBar = (props) => {
+  const dispatch = useDispatch()
+
 
   const [currentPage, setCurrentPage] = useState("");
 
@@ -46,6 +55,21 @@ const SideBar = (props) => {
                   </div>
                 </div>
               ))}
+            </Sidebar.ItemGroup>
+
+            <Sidebar.ItemGroup className='pt-10'>
+              <div >
+                <div className={`flex items-center px-5 hover:bg-primary-50 gap-x-4 cursor-pointer`} id='Sidebar' onClick={() => dispatch(logout())}>
+                  <CiLogout className='h-5 w-5 -mr-3' />
+                  <Sidebar.Item
+
+                    className={`py-2 hover:bg-transparent rounded-lg `}
+                  >
+
+                    Logout
+                  </Sidebar.Item>
+                </div>
+              </div>
             </Sidebar.ItemGroup>
 
           </Sidebar.Items>

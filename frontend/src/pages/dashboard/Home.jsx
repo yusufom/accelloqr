@@ -67,14 +67,14 @@ function Home() {
     {
       name: 'Download',
       selector: row => <div className='flex gap-4'>
-        <Link to={`${row.qr_employee.png}`} className='border-2 border-secondary text-lg px-4 py-1 rounded-2xl hover:text-secondary hover:scale-110 transition-all' download target="_self"> PNG</Link>
-        <Link to={`${row.qr_employee.svg}`} className=' text-lg px-4 py-1 rounded-2xl bg-secondary text-white hover:scale-110 transition-all' download target="_self">SVG</Link>
+        <Link to={`${process.env.REACT_APP_HOST_NAME}${row.qr_employee.png}`} className='border-2 border-secondary text-lg px-4 py-1 rounded-2xl hover:text-secondary hover:scale-110 transition-all' download target="_self"> PNG</Link>
+        <Link to={`${process.env.REACT_APP_HOST_NAME}${row.qr_employee.svg}`} className=' text-lg px-4 py-1 rounded-2xl bg-secondary text-white hover:scale-110 transition-all' download target="_self">SVG</Link>
       </div>,
     },
     {
       name: 'Actions',
       selector: row => <div className='flex gap-4'>
-        <Link to={`/edit/${row.ref}`}> <p className='border-2 border-primary text-lg px-4 py-1 rounded-2xl hover:bg-primary hover:text-white hover:scale-110 transition-all'>Edit</p></Link>
+        <Link to={`/edit/${row.ref}/`}> <p className='border-2 border-primary text-lg px-4 py-1 rounded-2xl hover:bg-primary hover:text-white hover:scale-110 transition-all'>Edit</p></Link>
         <button className='border-2 bg-red-700 text-white text-lg px-4 py-1 rounded-2xl hover:bg-red-400 hover:text-white hover:scale-110 transition-all' onClick={() => handleChange(row.ref, row.surname, row.firstName)}>Delete</button>
       </div>,
     },

@@ -3,14 +3,12 @@ import { Disclosure } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import { Link as DomLink, NavLink } from 'react-router-dom';
 import Logo from '../assets/bravewood.webp'
-
-// import { useSelector, useDispatch } from 'react-redux';
-
-// import { authActions } from '../store';
+import { useDispatch } from 'react-redux';
+import { logout } from '../actions/authSlice';
 
 const navigation = [
-    { id: 1, name: 'Dashboard', href: "/dashboard" },
-    { id: 2, name: 'New Qr', href: "/createqr" },
+    { id: 1, name: 'My Qrs', href: "/dashboard/" },
+    { id: 2, name: 'New Qr', href: "/create-qr/" },
 ]
 
 function classNames(...classes) {
@@ -21,6 +19,8 @@ function classNames(...classes) {
 
 function NavBar() {
     const [currentPage, setCurrentPage] = useState("");
+    const dispatch = useDispatch()
+
 
     useEffect(() => {
         const newPage = window.location.pathname;
@@ -108,6 +108,11 @@ function NavBar() {
                                     </Disclosure.Button>
                                 </NavLink>
                             ))}
+                            <NavLink className={classNames('py-2 text-[25px] font-extrabold cursor-pointer opacity-50 px-4 flex')} onClick={() => dispatch(logout())} >
+                                <Disclosure.Button as="p" >
+                                    Log out
+                                </Disclosure.Button>
+                            </NavLink>
 
 
 
