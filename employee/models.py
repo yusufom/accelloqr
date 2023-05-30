@@ -5,6 +5,7 @@ from django.urls import reverse
 import uuid
 from django.conf import settings
 from bulk_update_or_create import BulkUpdateOrCreateQuerySet
+from django.contrib.sites.models import Site
 
 
 
@@ -26,7 +27,10 @@ class Employee(TimestampedModel):
         return str(self.surname + " " + self.firstName)
     
     def get_absolute_url(self):
-        return f'{settings.URL}/{self.ref}'
+        # return f'{settings.URL}/employee/{self.ref}/'
+        domain = Site.objects.get_current().domain
+        # return reverse('employee_view', kwargs={'ref': self.ref })
+        return f'{domain}/staff/{self.ref}/'
     
     def save(self, *args, **kwargs):
         super(Employee, self).save(*args, **kwargs)

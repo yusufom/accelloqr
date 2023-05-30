@@ -159,8 +159,19 @@ class Logout(APIView):
         return Response(data=payload, status=status.HTTP_200_OK)
     
 class UserMe(APIView):
-    permission_classes = (IsAuthenticated,)
+    # permission_classes = (IsAuthenticated,)
     serializer_class = UserSerializer
 
     def get(self, request, format=None):
-        return Response(self.serializer_class(request.user).data)
+        serializer = self.serializer_class(request.user)
+        sign_up_code = SignupCode.objects.all().first().code
+        payload = success_response(
+            status=True,
+            message= 'User retrieved',
+            data= {
+                'username' : serializer.data['username'],
+                'superuser' : serializer.data['is_superuser'],
+                'code' : sign_up_code,
+                }
+            )
+        return Response(data=payload)

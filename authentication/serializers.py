@@ -1,6 +1,8 @@
 from django.contrib.auth import get_user_model
 from rest_framework import serializers
 
+from authentication.models import SignupCode
+
 
 User = get_user_model()
 User.__init__.unique = True
@@ -8,7 +10,8 @@ User.__init__.unique = True
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = get_user_model()
-        fields = ('id', 'username')
+        fields = ('id', 'username', 'is_superuser')
+
 
 class UserSignUpSerializer(serializers.Serializer):
     username = serializers.CharField(max_length=300, required=True)

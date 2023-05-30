@@ -5,8 +5,10 @@ import { useEffect, useState } from "react";
 import { BiHome } from "react-icons/bi";
 import { BsPencilSquare } from "react-icons/bs";
 import { CiLogout } from "react-icons/ci";
-import {  useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { logout } from '../actions/authSlice';
+import { useGetUserDetailsQuery } from '../actions/authService';
+
 
 
 
@@ -23,6 +25,19 @@ const navigation = [
 
 const SideBar = (props) => {
   const dispatch = useDispatch()
+  const { data, isFetching } = useGetUserDetailsQuery('userDetails', {
+    // perform a refetch every 15mins
+    pollingInterval: 900000,
+  })
+  const [datum, setDatum] = useState({ data: { code: "" } })
+
+  useEffect(() => {
+    if (!isFetching) {
+      setDatum(data)
+    }
+
+  }, [data, isFetching])
+
 
 
   const [currentPage, setCurrentPage] = useState("");
@@ -67,6 +82,16 @@ const SideBar = (props) => {
                   >
 
                     Logout
+                  </Sidebar.Item>
+                </div>
+              </div>
+            </Sidebar.ItemGroup>
+
+            <Sidebar.ItemGroup className='pt-36'>
+              <div >
+                <div className={`flex items-center px-5 `} id='Sidebar'>
+                  <Sidebar.Item className={`py-2 rounded-lg text-white hover:text-green-600 cursor-pointer`}>
+                    <p>{datum.data.code}</p>
                   </Sidebar.Item>
                 </div>
               </div>

@@ -13,6 +13,7 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
 const Login = (props) => {
     const dispatch = useDispatch()
+    const { loading, error } = useSelector((state) => state.auth)
 
 
 
@@ -37,6 +38,7 @@ const Login = (props) => {
                 {/* <img src="https://tuk-cdn.s3.amazonaws.com/can-uploader/sign_in-svg1.svg" alt="logo" /> */}
 
                 <div className="bg-white shadow rounded-2xl lg:w-1/4  md:w-1/3 w-full p-10 mt-16">
+                    {error}
                     <p tabIndex="0" className="focus:outline-none text-2xl font-extrabold leading-6 text-gray-800">Login to your account</p>
                     <p tabIndex="0" className="focus:outline-none text-sm mt-4 font-medium leading-none text-gray-500">Don't have account? <Link to="/sign-up/" className="hover:text-gray-500 focus:text-gray-500 focus:outline-none focus:underline hover:underline text-sm font-medium leading-none  text-gray-800 cursor-pointer"> Sign up here</Link></p>
 
@@ -58,7 +60,7 @@ const Login = (props) => {
                         </div>
                     </div>
                     <div className="mt-8">
-                        <button className="focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 text-sm font-semibold leading-none text-white focus:outline-none bg-indigo-700 border rounded hover:bg-indigo-600 py-4 w-full" onClick={formik.handleSubmit}>Sign in</button>
+                        <button className="focus:ring-2 focus:ring-offset-2 focus:ring-primary text-sm font-semibold leading-none text-white focus:outline-none bg-primary border rounded hover:bg-primary/90 py-4 w-full" onClick={formik.handleSubmit} type='submit'>Sign in</button>
                     </div>
                 </div>
             </div>

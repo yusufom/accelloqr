@@ -8,6 +8,10 @@ import { BiMobile } from 'react-icons/bi'
 import { Link } from 'react-router-dom';
 import { TextInput } from '../../customs/Input'
 import axios from "axios";
+import { useSelector } from 'react-redux';
+
+
+
 
 
 
@@ -15,7 +19,8 @@ import axios from "axios";
 
 function Home() {
   const { data, isLoading, refetch } = useFetch('all')
-
+  const { userInfo } = useSelector((state) => state.auth)
+  // const navigate = useNavigate()
 
   const handleChange = async (ref, surname, firstName) => {
     const confirm = window.confirm(`Are you sure you want to delete ${surname} ${firstName} Qr info?`);
@@ -36,7 +41,7 @@ function Home() {
   const columns = [
     {
       name: 'Qr Image',
-      selector: row => <div className='border-2 border-primary m-2 rounded-lg'><img src={`${process.env.REACT_APP_HOST_NAME}/${row.qr_employee.png}/`} alt={``} className='h-28' /></div>,
+      selector: row => <div className='border-2 border-primary m-2 rounded-lg'><img src={`${process.env.REACT_APP_HOST_NAME}${row.qr_employee.png}/`} alt={``} className='h-28' /></div>,
     },
     {
       name: 'Name',
@@ -118,6 +123,8 @@ function Home() {
           </div>
 
           <div className='md:pt-[100px] pt-[50px] px-10'>
+
+            {userInfo}
 
             <DataTable
               selectableRows

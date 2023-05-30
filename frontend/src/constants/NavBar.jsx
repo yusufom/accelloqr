@@ -5,6 +5,7 @@ import { Link as DomLink, NavLink } from 'react-router-dom';
 import Logo from '../assets/bravewood.webp'
 import { useDispatch } from 'react-redux';
 import { logout } from '../actions/authSlice';
+import { useGetUserDetailsQuery } from '../actions/authService';
 
 const navigation = [
     { id: 1, name: 'My Qrs', href: "/dashboard/" },
@@ -18,18 +19,21 @@ function classNames(...classes) {
 
 
 function NavBar() {
-    const [currentPage, setCurrentPage] = useState("");
+    const [currentPage] = useState("");
     const dispatch = useDispatch()
 
+    const { data, isFetching } = useGetUserDetailsQuery('userDetails', {
+        // perform a refetch every 15mins
+        pollingInterval: 900000,
+    })
+    const [datum, setDatum] = useState({ data: { code: "" } })
 
     useEffect(() => {
-        const newPage = window.location.pathname;
-        const myArray = newPage.split("/")
-        const newPagePath = "/" + myArray[1]
+        if (!isFetching) {
+            setDatum(data)
+        }
 
-
-        setCurrentPage(newPagePath);
-    }, [setCurrentPage]);
+    }, [data, isFetching])
 
     // const authUser = useSelector(x => x.auth.user);
     // const dispatch = useDispatch();
@@ -113,6 +117,12 @@ function NavBar() {
                                     Log out
                                 </Disclosure.Button>
                             </NavLink>
+
+                            <div className='px-4 py-2 absolute bottom-[200px]'>
+                                {datum?.data?.superuser &&
+                                    <p>{datum?.data?.code}</p>
+                                }
+                            </div>
 
 
 

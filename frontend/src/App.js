@@ -7,32 +7,29 @@ import ViewEmployee from "./pages/dashboard/ViewEmployee";
 import { ErrorBoundary } from "react-error-boundary";
 import EditQr from "./pages/dashboard/EditQr";
 import { history } from './helpers/history';
+// import { useSelector } from 'react-redux';
 
 
-
+function RequireAuth({ children }) {
+  let isAuthenticated = localStorage.getItem('userToken');
+  return isAuthenticated ? children : <Navigate to={`/`} />;
+}
 
 function App() {
   history.navigate = useNavigate();
   history.location = useLocation();
   return (
-    // <Provider store={store}>
-    // <BrowserRouter>
-      <ErrorBoundary fallback={<p>Something went wrong</p>}>
-        <Routes>
-          <Route index element={<Login />} />
-          <Route path="/sign-up/" element={<SignUp />} />
-          <Route path="/dashboard/" element={<Home />} />
-          <Route path="/create-qr/" element={<CreateQr />} />
-          <Route path="/:ref/" element={<ViewEmployee />} />
-          <Route path="/edit/:ref/" element={<EditQr />} />
-          <Route path="*" element={<Navigate to="/" />} />
-
-        </Routes>
-      </ErrorBoundary>
-    // </BrowserRouter>
-
-    // </Provider>
-
+    <ErrorBoundary fallback={<p>Something went wrong</p>}>
+      <Routes>
+        <Route path="/" element={<Login />} />
+        <Route path="/sign-up" element={<SignUp />} />
+        <Route path="/dashboard/" element={<RequireAuth><Home /></RequireAuth>} />
+        <Route path="/create-qr/" element={<RequireAuth><CreateQr /></RequireAuth>} />
+        <Route path="/edit/:ref/" element={<RequireAuth><EditQr /></RequireAuth>} />
+        <Route path="/staff/:ref/" element={<ViewEmployee />} />
+        <Route path="*" element={<Navigate to="/" />} />
+      </Routes>
+    </ErrorBoundary>
   );
 }
 
