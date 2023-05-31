@@ -24,18 +24,18 @@ function Basic({ formik }) {
 
             </div>
             <div className='md:flex justify-between gap-4 my-4'>
-                <TextInput label={`Surname`} require={false} value={formik.values.surname} onChange={(e) => handleBasicInputChange('surname', e.target.value)} placeHolder={`Enter surname`} error={formik.errors} helperText={formik.errors.surname} />
-                <TextInput label={`First Name`} require={false} value={formik.values.firstName} onChange={(e) => handleBasicInputChange('firstName', e.target.value)} placeHolder={`Enter first name`} error={formik.errors} helperText={formik.errors.firstName} />
+                <TextInput label={`Surname`} require={false} value={formik.values.surname} onChange={(e) => handleBasicInputChange('surname', e.target.value)} placeHolder={`Enter surname`} error={formik.errors.surname && formik.touched.surname} helperText={formik.errors.surname} />
+                <TextInput label={`First Name`} require={false} value={formik.values.firstName} onChange={(e) => handleBasicInputChange('firstName', e.target.value)} placeHolder={`Enter first name`} error={formik.errors.firstName && formik.touched.firstName} helperText={formik.errors.firstName} />
             </div>
 
             <div className='md:flex justify-between gap-4 my-4'>
-                <SelectInput label={`Gender`} data={['Male', 'Female']} value={formik.values.gender} firstOption={`Choose gender`} onChange={(e) => handleBasicInputChange('gender', e.target.value)} error={formik.gender} helperText={formik.errors.gender}/>
-                <TextInput label={`Company`} require={false} value={formik.values.company} onChange={(e) => handleBasicInputChange('company', e.target.value)} placeHolder={`Enter company`} error={formik.errors} helperText={formik.errors.company}/>
+                <SelectInput label={`Gender`} data={['Male', 'Female']} value={formik.values.gender} firstOption={`Choose gender`} onChange={(e) => handleBasicInputChange('gender', e.target.value)} error={formik.gender} helperText={formik.errors.gender} />
+                <SelectInput label={`Company`} data={['BRAVEWOOD', 'ACCELLO']} firstOption={`Choose Company`} require={false} value={formik.values.company} onChange={(e) => handleBasicInputChange('company', e.target.value)}  error={formik.errors.company && formik.touched.company} helperText={formik.errors.company} />
             </div>
 
             <div className='md:flex justify-between gap-4 my-4'>
-                <TextInput label={`Company Address`} require={false} value={formik.values.address} onChange={(e) => handleBasicInputChange('address', e.target.value)} placeHolder={`Enter address`} name={`address`} error={formik.errors} helperText={formik.errors.address}/>
-                <TextInput label={`Position`} require={false} value={formik.values.position} onChange={(e) => handleBasicInputChange('position', e.target.value)} placeHolder={`Enter position`} name={`position`} error={formik.errors} helperText={formik.errors.position} />
+                <TextInput label={`Company Address`} require={false} value={formik.values.address} onChange={(e) => handleBasicInputChange('address', e.target.value)} placeHolder={`Enter address`} name={`address`} error={formik.errors.address && formik.touched.address} helperText={formik.errors.address} />
+                <TextInput label={`Position`} require={false} value={formik.values.position} onChange={(e) => handleBasicInputChange('position', e.target.value)} placeHolder={`Enter position`} name={`position`} error={formik.errors.position && formik.touched.position} helperText={formik.errors.position} />
             </div>
 
             <div className='flex justify-between gap-4 my-4'>

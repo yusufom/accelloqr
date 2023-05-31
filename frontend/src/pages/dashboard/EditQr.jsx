@@ -53,7 +53,7 @@ function EditQr() {
                 enqueueSnackbar('Updating...', { variant: 'info' })
 
                 try {
-                    const response = await axios.put(`${process.env.REACT_APP_HOST_NAME}/employees/update/${ref}/`, values,
+                    const response = await axios.put(`/employees/update/${ref}/`, values,
 
                     );
                     console.log(response.data)
@@ -62,7 +62,7 @@ function EditQr() {
 
                     if (values.avatar instanceof File) {
                         try {
-                            const res = await axios.put(`${process.env.REACT_APP_HOST_NAME}/upload-image/${ref}/`, { 'avatar': values.avatar }, {
+                            const res = await axios.put(`/upload-image/${ref}/`, { 'avatar': values.avatar }, {
                                 headers: {
                                     "Content-Type": "multipart/form-data",
                                 },
@@ -86,7 +86,7 @@ function EditQr() {
         }
     )
     useEffect(() => {
-        axios.get(`${process.env.REACT_APP_HOST_NAME}/employees/${ref}/`)
+        axios.get(`/employees/${ref}/`)
             .then(response => {
                 formik.setValues(response.data);
                 setisLoading(false)

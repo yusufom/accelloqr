@@ -43,7 +43,7 @@ class Employee(TimestampedModel):
 
 class Telephone(TimestampedModel):
     employee = models.ForeignKey(Employee, on_delete=models.CASCADE, related_name="telephone_employee")
-    name = models.CharField(max_length=200)
+    name = models.CharField(max_length=200, blank=True, null=True)
     type = models.CharField(max_length=200, choices=(("Mobile","Mobile"), ("Home","Home"), ("Work","Work"), ("Fax","Fax"), ("Other","Other")))
     phone = models.CharField(max_length=12)
 
@@ -54,7 +54,7 @@ class Telephone(TimestampedModel):
 
 class Email(TimestampedModel):
     employee = models.ForeignKey(Employee, on_delete=models.CASCADE, related_name="email_employee")
-    name = models.CharField(max_length=200)
+    name = models.CharField(max_length=200, blank=True, null=True)
     email = models.EmailField(max_length=300)
 
     objects = BulkUpdateOrCreateQuerySet.as_manager()
@@ -82,7 +82,7 @@ class Socials(TimestampedModel):
         ("Instagram","Instagram")
     )
     employee = models.ForeignKey(Employee, on_delete=models.CASCADE, related_name="socials_employee")
-    name = models.CharField(max_length=200)
+    name = models.CharField(max_length=200, blank=True, null=True)
     type = models.CharField(max_length=200, choices=social_type)
     url = models.URLField(max_length=300)
 

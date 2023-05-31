@@ -4,7 +4,7 @@ function TextInput({ label, value, onChange, placeHolder, error, helperText }) {
     return (
         <div className='w-full'>
             <p className='p-1 '>{label}</p>
-            <input type="text" className={`${helperText && 'border-red-600 focus:border-red-600' } h-12 w-full outline-1 border-2 rounded-full px-4 text-base transition-all`} value={value} onChange={onChange} placeholder={placeHolder} />
+            <input type="text" className={`${error && 'border-red-600 focus:border-red-600'} h-12 w-full outline-1 border-2 rounded-full px-4 text-base transition-all`} value={value} onChange={onChange} placeholder={placeHolder} />
             {error &&
                 <p className='text-red-700 ml-4 text-sm mt-1'>{helperText}</p>
             }
@@ -17,7 +17,7 @@ function SelectInput({ label, data, value, onChange, firstOption, error, helperT
         <div className='w-full'>
             <label hmlfor={label} className='p-1.5'>{label}</label>
 
-            <select name={label} id={label} className={`${helperText && 'border-red-600 focus:border-red-600' } w-full h-12 rounded-full px-4 text-base transition-all bg-transparent border-2 outline-1 mt-2`} value={value} onChange={onChange}>
+            <select name={label} id={label} className={`${error && 'border-red-600 focus:border-red-600'} w-full h-12 rounded-full px-4 text-base transition-all bg-transparent border-2 outline-1 mt-2`} value={value} onChange={onChange}>
                 <option value={`item`} className='rounded-full border' defaultValue>{firstOption}</option>
                 {data?.map((item, index) => (
                     <option value={item} className='rounded-full border' key={index}>{item}</option>

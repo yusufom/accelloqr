@@ -26,7 +26,7 @@ function Home() {
     const confirm = window.confirm(`Are you sure you want to delete ${surname} ${firstName} Qr info?`);
     if (confirm) {
       try {
-        const res = await axios.delete(`${process.env.REACT_APP_HOST_NAME}/employees/delete/${ref}/`);
+        const res = await axios.delete(`/employees/delete/${ref}/`);
         console.log(res)
 
         alert(res.data.message)
@@ -72,8 +72,8 @@ function Home() {
     {
       name: 'Download',
       selector: row => <div className='flex gap-4'>
-        <Link to={`${process.env.REACT_APP_HOST_NAME}${row.qr_employee.png}`} className='border-2 border-secondary text-lg px-4 py-1 rounded-2xl hover:text-secondary hover:scale-110 transition-all' download target="_self"> PNG</Link>
-        <Link to={`${process.env.REACT_APP_HOST_NAME}${row.qr_employee.svg}`} className=' text-lg px-4 py-1 rounded-2xl bg-secondary text-white hover:scale-110 transition-all' download target="_self">SVG</Link>
+        <a href={`${process.env.REACT_APP_HOST_NAME}${row.qr_employee.png}`} className='border-2 border-secondary text-lg px-4 py-1 rounded-2xl hover:text-secondary hover:scale-110 transition-all' download target="_blank" rel="noopener noreferrer"><button>PNG</button></a>
+        <a href={`${process.env.REACT_APP_HOST_NAME}${row.qr_employee.svg}`} className=' text-lg px-4 py-1 rounded-2xl bg-secondary text-white hover:scale-110 transition-all' download target="_blank" rel="noopener noreferrer"><button>SVG</button></a>
       </div>,
     },
     {

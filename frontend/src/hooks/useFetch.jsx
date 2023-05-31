@@ -8,7 +8,7 @@ function useFetch(ref) {
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        const url = `${process.env.REACT_APP_HOST_NAME}/employees/${ref}/`
+        const url = `/employees/${ref}/`
         const options = {
             method: 'GET',
             xstfCookieName: "csrftoken",
@@ -41,7 +41,7 @@ function useFetch(ref) {
 
     function refetch() {
         setIsLoading(true);
-        const url = `${process.env.REACT_APP_HOST_NAME}/employees/${ref}/`
+        const url = `/employees/${ref}/`
         const options = {
             method: 'GET',
             xstfCookieName: "csrftoken",

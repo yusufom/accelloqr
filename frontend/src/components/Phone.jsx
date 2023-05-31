@@ -1,10 +1,12 @@
 import React from 'react'
-import { BsFillBarChartFill, BsWifi, BsBatteryHalf, BsGlobe, BsFacebook, BsTwitter, BsLinkedin, BsGithub, BsInstagram, BsBriefcaseFill } from 'react-icons/bs'
+import { BsFillBarChartFill, BsWifi, BsBatteryHalf, BsGlobe, BsBriefcaseFill } from 'react-icons/bs'
 import { FiPhoneCall, FiMail, FiUserPlus } from 'react-icons/fi'
-import { FaHome, FaSuitcase } from 'react-icons/fa'
+import { FaHome, FaSuitcase, FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn, FaGithub } from 'react-icons/fa'
 import { MdLocationPin } from 'react-icons/md'
 import { BiMobile } from 'react-icons/bi'
 import Avatar from '../assets/profile.webp'
+import Bravewood from '../assets/bravewood.png';
+
 
 
 function Phone({ data, edit }) {
@@ -39,7 +41,9 @@ function Phone({ data, edit }) {
                             <div className='bg-white h-full w-full flex bg-inherit items-center flex-col min-h-screen '>
                                 <div className='w-full'>
                                     <div className='bg-primary w-full flex items-center flex-col h-[300px] 2xl:h-[370px]'>
-                                        <div className='w-[80px] h-[80px] 2xl:w-[100px] 2xl:h-[100px] border-4 border-secondary mt-[80px] 2xl:mt-[100px] rounded-full flex items-center justify-center bg-red-500 flex-row'>
+                                        <img src={Bravewood} alt="bravewood logo" className='max-w-[500px] mx-auto mt-7 w-[100px]' />
+
+                                        <div className='w-[80px] h-[80px] 2xl:w-[100px] 2xl:h-[100px] border-4 border-secondary mt-[80px] 2xl:mt-[100px] rounded-full flex items-center justify-center bg-white flex-row'>
                                             <div className='w-[70px] h-[70px] 2xl:w-[90px] 2xl:h-[90px] flex overflow-hidden items-center rounded-full flex-row justify-center'>
                                                 {edit ?
                                                     <img src={`${process.env.REACT_APP_HOST_NAME}${data?.avatar}`} alt="" /> :
@@ -56,22 +60,22 @@ function Phone({ data, edit }) {
 
                                         <div className='gap-1 flex mt-4 flex-row justify-center items-start'>
 
-                                            {data.telephone_employee[0].name !== '' && (
+                                            {data.telephone_employee[0].phone !== '' && (
                                                 <div className='inline-flex min-w-[72px] items-center flex-col justify-center'>
                                                     <button className='bg-secondary w-9 h-9 2xl:w-12 2xl:h-12 flex items-center justify-center rounded-lg'>
                                                         <FiPhoneCall className='text-white h-5 w-5' />
                                                     </button>
-                                                    <p className='text-white 2xl:mt-1 text-[11px]'>Call</p>
+                                                    {/* <p className='text-white 2xl:mt-1 text-[11px]'>Call</p> */}
                                                 </div>
                                             )}
 
-                                            {data.email_employee[0].name !== '' && (
+                                            {data.email_employee[0].email !== '' && (
 
                                                 <div className='inline-flex min-w-[72px] items-center flex-col justify-center'>
                                                     <button className='bg-secondary w-9 h-9 2xl:w-12 2xl:h-12 flex items-center justify-center rounded-lg'>
                                                         <FiMail className='text-white h-5 w-5' />
                                                     </button>
-                                                    <p className='text-white 2xl:mt-1 text-[11px]'>Email</p>
+                                                    {/* <p className='text-white 2xl:mt-1 text-[11px]'>Email</p> */}
                                                 </div>
                                             )}
 
@@ -80,7 +84,7 @@ function Phone({ data, edit }) {
                                                     <button className='bg-secondary w-9 h-9 2xl:w-12 2xl:h-12 flex items-center justify-center rounded-lg'>
                                                         <MdLocationPin className='text-white h-5 w-5' />
                                                     </button>
-                                                    <p className='text-white 2xl:mt-1 text-[11px]'>Location</p>
+                                                    {/* <p className='text-white 2xl:mt-1 text-[11px]'>Location</p> */}
                                                 </div>
                                             )}
 
@@ -99,22 +103,22 @@ function Phone({ data, edit }) {
                                             {/* contact section start */}
                                             <div className='border-t p-6'>
                                                 {data.telephone_employee?.map((items, index) => (
-                                                    <div className='flex w-full py-1 gap-6' key={index}>
-                                                        <div className='w-5 h-5'>
+                                                    <div className='flex w-full py-1 gap-6 items-center' key={index}>
+                                                        <div className='w-7 h-7'>
                                                             {items.type === 'Mobile' ?
-                                                                (<BiMobile className='w-6 h-6' />) :
+                                                                (<BiMobile className='text-secondary w-7 h-7' />) :
                                                                 items.type === 'Home' ?
-                                                                    (<FaHome className='w-6 h-6' />) :
+                                                                    (<FaHome className='text-secondary w-7 h-7' />) :
                                                                     items.type === 'Work' ?
-                                                                        (<BsBriefcaseFill className='w-6 h-6' />) :
+                                                                        (<BsBriefcaseFill className='text-secondary w-7 h-7' />) :
                                                                         ('')
 
                                                             }
 
                                                         </div>
                                                         <div className=''>
+                                                            <p className='text-sm text-black/40'>{items.type}</p>
                                                             <a href="/" className='text-sm md:text-base'>{items.phone}</a>
-                                                            <p className='text-sm text-black/40'>{items.name}</p>
                                                         </div>
                                                     </div>
                                                 ))}
@@ -126,15 +130,15 @@ function Phone({ data, edit }) {
                                             <div className='border-t p-6'>
                                                 {data.email_employee?.map((items, index) => (
 
-                                                    <div className='flex w-full py-1 gap-x-6' key={index}>
-                                                        <div className='w-5 h-5'>
-                                                            {items.name &&
-                                                                <FiMail className='w-6 h-6' />
+                                                    <div className='flex w-full py-1 gap-x-6 items-center' key={index}>
+                                                        <div className='text-secondary w-7 h-7'>
+                                                            {items.email &&
+                                                                <FiMail className='text-secondary w-7 h-7' />
                                                             }
                                                         </div>
                                                         <div className=''>
+                                                            <p className='text-sm text-black/40'>Email</p>
                                                             <a href="/" className='text-sm md:text-base'>{items.email}</a>
-                                                            <p className='text-sm text-black/40'>{items.name}</p>
                                                         </div>
                                                     </div>
                                                 ))}
@@ -147,15 +151,15 @@ function Phone({ data, edit }) {
                                             <div className='border-t p-6'>
                                                 {data.website_employee?.map((items, index) => (
 
-                                                    <div className='flex w-full py-1 gap-x-6' key={index}>
-                                                        <div className='w-5 h-5'>
+                                                    <div className='flex w-full py-1 gap-x-6 items-center' key={index}>
+                                                        <div className='w-7 h-7'>
                                                             {items.name &&
-                                                                <BsGlobe className='w-6 h-6' />
+                                                                <BsGlobe className='text-secondary w-7 h-7' />
                                                             }
                                                         </div>
                                                         <div className=''>
+                                                            <p className='text-sm text-black/40'>Website</p>
                                                             <a href="/" className='text-sm md:text-base'>{items.url}</a>
-                                                            <p className='text-sm text-black/40'>{items.name}</p>
                                                         </div>
                                                     </div>
                                                 ))}
@@ -165,13 +169,13 @@ function Phone({ data, edit }) {
                                             {/* Location section start */}
                                             {data.address !== '' && (
                                                 <div className='border-t p-6'>
-                                                    <div className='flex w-full py-1 gap-x-6'>
-                                                        <div className='w-5 h-5'>
-                                                            <MdLocationPin className='w-6 h-6' />
+                                                    <div className='flex w-full py-1 gap-x-6 items-center'>
+                                                        <div className='w-7 h-7'>
+                                                            <MdLocationPin className='text-secondary w-7 h-7' />
                                                         </div>
                                                         <div className=''>
+                                                            <p className='text-sm text-black/40'>Company address</p>
                                                             <a href="/" className='text-sm md:text-base'>{data.address}</a>
-                                                            <p className='text-sm text-black/40'>Home address</p>
                                                         </div>
                                                     </div>
 
@@ -184,8 +188,8 @@ function Phone({ data, edit }) {
                                             {data.company &&
                                                 <div className='border-t p-6'>
                                                     <div className='flex w-full py-1 gap-x-6'>
-                                                        <div className='w-5 h-5'>
-                                                            <FaSuitcase className='w-6 h-6' />
+                                                        <div className='w-7 h-7'>
+                                                            <FaSuitcase className='text-secondary w-7 h-7' />
                                                         </div>
                                                         <div className=''>
                                                             <a href="/" className='text-sm md:text-base'>{data.company}</a>
@@ -201,34 +205,38 @@ function Phone({ data, edit }) {
                                             {/* Socials section start */}
                                             <div className='border-y p-6'>
                                                 <p className='text-center mb-4'>Find me on:</p>
-                                                {data.socials_employee?.map((items, index) => (
-                                                    <div className='flex w-full py-4 gap-x-6' key={index}>
-                                                        <div className='w-5 h-5'>
-                                                            {items.type === 'Facebook' ?
-                                                                (<BsFacebook className='w-8 h-8 text-primary' />) :
-                                                                items.type === 'Twitter' ?
-                                                                    (<BsTwitter className='w-8 h-8 text-primary/70' />) :
-                                                                    items.type === 'Instagram' ?
-                                                                        (<BsInstagram className='w-8 h-8 text-primary/70' />) :
-                                                                        items.type === 'Github' ?
-                                                                            (<BsGithub className='w-8 h-8 text-primary/70' />) :
-                                                                            items.type === 'Linkedin' ?
-                                                                                (<BsLinkedin className='w-8 h-8 text-primary/70' />) :
-                                                                                ('')
-                                                            }
+                                                <div className='grid grid-cols-2 gap-3'>
+                                                    {data.socials_employee?.map((items, index) => (
+                                                        <div className='flex w-full py-4 gap-x-6' key={index}>
+                                                            <div className='w-8 h-8 bg-primary p-1 rounded-md flex items-center justify-center'>
+                                                                {items.type === 'Facebook' ?
+                                                                    (<FaFacebookF className='w-5 h-5 text-white' />) :
+                                                                    items.type === 'Twitter' ?
+                                                                        (<FaTwitter className='w-5 h-5 text-white' />) :
+                                                                        items.type === 'Instagram' ?
+                                                                            (<FaInstagram className='w-5 h-5 text-white' />) :
+                                                                            items.type === 'Github' ?
+                                                                                (<FaGithub className='w-5 h-5 text-white' />) :
+                                                                                items.type === 'Linkedin' ?
+                                                                                    (<FaLinkedinIn className='w-5 h-5 text-white' />) :
+                                                                                    ('')
+                                                                }
 
+                                                            </div>
+                                                            <div className=''>
+                                                                <a href="/" className=''>{items.type}</a>
+                                                            </div>
                                                         </div>
-                                                        <div className=''>
-                                                            <a href="/" className='font-bold'>{items.type}</a>
-                                                        </div>
-                                                    </div>
-                                                ))}
+                                                    ))}
+
+                                                </div>
+
 
                                             </div>
                                             {/* Socials section end */}
 
                                             <div className='p-6 my-[30px] max-w-[400px] mx-auto'>
-                                                <button className='text-center flex justify-center items-center gap-3 bg-secondary py-4 px-10 rounded-full text-white text-base font-bold shadow-xl'><FiUserPlus />add Contact</button>
+                                                <button className='text-center flex justify-center items-center gap-3 bg-secondary py-4 px-10 rounded-lg text-white text-base font-bold shadow-xl'><FiUserPlus />Add Contact</button>
                                             </div>
 
                                         </div>

@@ -33,16 +33,16 @@ function Website({ formik }) {
             {formik.values.website_employee.map((item, index) => (
                 <div className='flex flex-wrap md:gap-4 gap-1 my-4 items-center' key={index}>
                     <div className='md:w-2/5 w-[40%]'>
-                        <TextInput label={`Title`} require={false} value={item.name} onChange={(e) => handleWebsiteChange(e, index, 'name',)} placeHolder={`Enter title`} error={formik.errors} helperText={formik.errors.website_employee &&
-                                formik.errors.website_employee[index]
-                                ? formik.errors.website_employee[index].name
-                                : ''} />
+                        <TextInput label={`Title`} require={false} value={item.name} onChange={(e) => handleWebsiteChange(e, index, 'name',)} placeHolder={`Enter title`} error={formik.errors.website_employee && formik.touched.website_employee} helperText={formik.errors.website_employee &&
+                            formik.errors.website_employee[index]
+                            ? formik.errors.website_employee[index].name
+                            : ''} />
                     </div>
                     <div className='md:w-[55%] w-[58.5%]'>
-                        <TextInput label={`URL`} require={false} value={item.url} onChange={(e) => handleWebsiteChange(e, index, 'url')} placeHolder={`https://www.example.com`} error={formik.errors} helperText={formik.errors.website_employee &&
-                                formik.errors.website_employee[index]
-                                ? formik.errors.website_employee[index].url
-                                : ''}/>
+                        <TextInput label={`URL`} require={false} value={item.url} onChange={(e) => handleWebsiteChange(e, index, 'url')} placeHolder={`https://www.example.com`} error={formik.errors.website_employee && formik.touched.website_employee} helperText={formik.errors.website_employee &&
+                            formik.errors.website_employee[index]
+                            ? formik.errors.website_employee[index].url
+                            : ''} />
                     </div>
 
                 </div>

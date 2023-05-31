@@ -32,20 +32,20 @@ function Socials({ formik }) {
         <div >
             {formik.values.socials_employee.map((item, index) => (
                 <div className='flex flex-wrap md:gap-4 gap-1 my-4 items-center' key={index}>
-                    <div className='md:w-1/4 w-[49%]'>
-                        <SelectInput label={`Type`} data={['Facebook', 'Twitter', 'Linkedin', 'Instagram', 'Github']} firstOption={`Choose social media`} value={item.type} onChange={(e) => handleSocialChange(e, index, 'type')}  error={formik.errors} helperText={formik.errors.socials_employee &&
+                    <div className='w-2/5'>
+                        <SelectInput label={`Type`} data={['Facebook', 'Twitter', 'Linkedin', 'Instagram', 'Github']} firstOption={`Choose social media`} value={item.type} onChange={(e) => handleSocialChange(e, index, 'type')}  error={formik.errors.socials_employee && formik.touched.socials_employee} helperText={formik.errors.socials_employee &&
                                 formik.errors.socials_employee[index]
                                 ? formik.errors.socials_employee[index].type
                                 : ''} />
                     </div>
-                    <div className='md:w-1/4 w-[49%]'>
-                        <TextInput label={`Title`} require={false} value={item.name} onChange={(e) => handleSocialChange(e, index, 'name')} placeHolder={`Enter title`} error={formik.errors} helperText={formik.errors.socials_employee &&
+                    {/* <div className='md:w-1/4 w-[49%]'>
+                        <TextInput label={`Title`} require={false} value={item.name} onChange={(e) => handleSocialChange(e, index, 'name')} placeHolder={`Enter title`} error={formik.errors.socials_employee && formik.touched.socials_employee} helperText={formik.errors.socials_employee &&
                                 formik.errors.socials_employee[index]
                                 ? formik.errors.socials_employee[index].name
                                 : ''}/>
-                    </div>
-                    <div className='md:w-[45%] w-full'>
-                        <TextInput label={`Url`} require={false} value={item.url} onChange={(e) => handleSocialChange(e, index, 'url')} placeHolder={`Enter url`} error={formik.errors} helperText={formik.errors.socials_employee &&
+                    </div> */}
+                    <div className='w-[55%]'>
+                        <TextInput label={`Url`} require={false} value={item.url} onChange={(e) => handleSocialChange(e, index, 'url')} placeHolder={`Enter url`} error={formik.errors.socials_employee && formik.touched.socials_employee} helperText={formik.errors.socials_employee &&
                                 formik.errors.socials_employee[index]
                                 ? formik.errors.socials_employee[index].url
                                 : ''} />

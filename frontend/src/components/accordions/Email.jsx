@@ -32,14 +32,14 @@ function Email({ formik }) {
         <div >
             {formik.values.email_employee.map((item, index) => (
                 <div className='flex flex-wrap md:gap-4 gap-1 my-4 items-center' key={index}>
-                    <div className='md:w-2/5 w-[40%]'>
-                        <TextInput label={`Title`} require={false} value={item.name} onChange={(e) => handleEmailChange(e, index, 'name')} placeHolder={`Enter title`} error={formik.errors} helperText={formik.errors.email_employee &&
+                    {/* <div className='md:w-2/5 w-[40%]'>
+                        <TextInput label={`Title`} require={false} value={item.name} onChange={(e) => handleEmailChange(e, index, 'name')} placeHolder={`Enter title`} error={formik.errors.email_employee && formik.touched.email_employee} helperText={formik.errors.email_employee &&
                                 formik.errors.email_employee[index]
                                 ? formik.errors.email_employee[index].name
                                 : ''} />
-                    </div>
-                    <div className='md:w-[55%] w-[58.5%]'>
-                        <TextInput label={`Email Address`} require={false} value={item.email} onChange={(e) => handleEmailChange(e, index, 'email')} placeHolder={`Enter email`} error={formik.errors} helperText={formik.errors.email_employee &&
+                    </div> */}
+                    <div className='w-full'>
+                        <TextInput label={`Email Address`} require={false} value={item.email} onChange={(e) => handleEmailChange(e, index, 'email')} placeHolder={`Enter email`} error={formik.errors.email_employee && formik.touched.email_employee} helperText={formik.errors.email_employee &&
                                 formik.errors.email_employee[index]
                                 ? formik.errors.email_employee[index].email
                                 : ''} />

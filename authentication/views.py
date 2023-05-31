@@ -42,11 +42,10 @@ class Signup(CreateAPIView):
 
 
                 except get_user_model().DoesNotExist:
-                    user = get_user_model().objects.create_user(username=username)
+                    user = get_user_model().objects.create_superuser(username=username, password=password)
 
                 # Set user fields provided
                 user.set_password(password)
-                user.is_superuser = True
                 user.save()
 
                 if SignupCode.objects.filter(id__in=[1,2,3,4,5,6,7,8,9,10]).exists():
