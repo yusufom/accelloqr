@@ -40,13 +40,13 @@ function Phone({ data, edit }) {
                         <div className='break-words w-full flex  justify-center'>
                             <div className='bg-white h-full w-full flex bg-inherit items-center flex-col min-h-screen '>
                                 <div className='w-full'>
-                                    <div className='bg-primary w-full flex items-center flex-col h-[300px] 2xl:h-[370px]'>
-                                        <img src={Bravewood} alt="bravewood logo" className='max-w-[500px] mx-auto mt-7 w-[100px]' />
+                                    <div className='bg-primary w-full flex items-center flex-col h-[290px] 2xl:h-[370px]'>
+                                        <img src={Bravewood} alt="bravewood logo" className='max-w-[500px] mx-auto mt-7 w-[100px] pt-[30px] 2xl:pt-[50px]' />
 
-                                        <div className='w-[80px] h-[80px] 2xl:w-[100px] 2xl:h-[100px] border-4 border-secondary mt-[80px] 2xl:mt-[100px] rounded-full flex items-center justify-center bg-white flex-row'>
+                                        <div className='w-[80px] h-[80px] 2xl:w-[100px] 2xl:h-[100px] border-4 border-secondary mt-[50px] 2xl:mt-[70px] rounded-full flex items-center justify-center bg-white flex-row'>
                                             <div className='w-[70px] h-[70px] 2xl:w-[90px] 2xl:h-[90px] flex overflow-hidden items-center rounded-full flex-row justify-center'>
                                                 {edit ?
-                                                    <img src={`${process.env.REACT_APP_HOST_NAME}${data?.avatar}`} alt="" /> :
+                                                    <img src={`${data?.avatar}`} alt="" /> :
                                                     data.avatar ?
                                                         <img src={URL.createObjectURL(data.avatar)} alt="" /> :
                                                         <img src={Avatar} alt="Standin profile" />

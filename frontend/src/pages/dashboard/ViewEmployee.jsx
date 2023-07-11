@@ -62,7 +62,7 @@ function ViewEmployee() {
                                                 <img src={Bravewood} alt="bravewood logo" className='max-w-[500px] mx-auto mt-7 w-[150px]' />
                                                 <div className='p-1 border-4 border-secondary mt-[80px] 2xl:mt-[100px] rounded-full flex items-center justify-center bg-white flex-row'>
                                                     <div className='w-[160px] h-[160px] 2xl:w-[180px] 2xl:h-[180px] flex overflow-hidden items-center rounded-full flex-row justify-center'>
-                                                        <img src={`${process.env.REACT_APP_HOST_NAME}${data?.avatar}`} alt="" />
+                                                        <img src={`${data?.avatar}`} alt="" />
                                                     </div>
                                                 </div>
                                                 <h1 className='text-white text-lg 2xl:text-2xl font-bold mt-1'>{data?.surname} {data?.firstName}</h1>
@@ -206,7 +206,7 @@ function ViewEmployee() {
                                                                     <FaSuitcase className='text-secondary w-7 h-7' />
                                                                 </div>
                                                                 <div className=''>
-                                                                    <a href="/" className='text-sm md:text-base'>{data?.company}</a>
+                                                                    <a href="/" className='text-sm md:text-base'>{data?.company} FINANCE LIMITED</a>
                                                                     <p className='text-sm text-black/40'>{data?.position}</p>
                                                                 </div>
                                                             </div>

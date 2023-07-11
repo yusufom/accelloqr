@@ -29,8 +29,6 @@ function useFetch(ref) {
                 setIsLoading(false)
             } catch (error) {
                 setError(error);
-                console.log('There is an error', error)
-                alert('There is an error')
             } finally {
                 setIsLoading(false)
             }
@@ -62,8 +60,6 @@ function useFetch(ref) {
                 setIsLoading(false)
             } catch (error) {
                 setError(error);
-                console.log('There is an error', error)
-                alert('There is an error')
             } finally {
                 setIsLoading(false)
             }

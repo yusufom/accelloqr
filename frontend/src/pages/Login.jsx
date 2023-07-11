@@ -15,15 +15,6 @@ const Login = (props) => {
     const dispatch = useDispatch()
     const { loading, error } = useSelector((state) => state.auth)
 
-
-
-
-
-
-
-
-
-
     const formik = useFormik(
         {
             initialValues: { "username": "", "password": "" },
