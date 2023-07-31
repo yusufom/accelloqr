@@ -30,7 +30,22 @@ const initialData = {
         {
             type: 'Facebook',
             name: 'Facebook',
-            url: 'https://facebook.com/bravewood/'
+            url: 'https://facebook.com/bravewoodng/'
+        },
+        {
+            type: 'Twitter',
+            name: 'Twitter',
+            url: 'https://twitter.com/bravewoodng'
+        },
+        {
+            type: 'Linkedin',
+            name: 'Linkedin',
+            url: 'https://www.linkedin.com/company/bravewoodng'
+        },
+        {
+            type: 'Instagram',
+            name: 'Instagram',
+            url: 'https://www.instagram.com/bravewoodng/'
         },
     ],
 }
