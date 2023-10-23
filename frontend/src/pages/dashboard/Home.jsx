@@ -72,7 +72,7 @@ function Home() {
     {
       name: 'Download',
       selector: row => <div className='flex gap-4'>
-        <a href={`${row.qr_employee.png}`} className='border-2 border-secondary text-lg px-4 py-1 rounded-2xl hover:text-secondary hover:scale-110 transition-all' download target="_blank" rel="noopener noreferrer"><button>PNG</button></a>
+        <a href={`${row.qr_employee.png}`} className=' border-secondary text-lg px-4 py-1 rounded-2xl hover:text-secondary hover:scale-110 transition-all' download target="_blank" rel="noopener noreferrer"><button>PNG</button></a>
         <a href={`${row.qr_employee.svg}`} className=' text-lg px-4 py-1 rounded-2xl bg-secondary text-white hover:scale-110 transition-all' download target="_blank" rel="noopener noreferrer"><button>SVG</button></a>
       </div>,
     },

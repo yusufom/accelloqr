@@ -10,6 +10,7 @@ import Skeleton from '../../components/Skeleton'
 import ErrorPage from '../../components/ErrorPage'
 import { saveAs } from 'file-saver';
 import Bravewood from '../../assets/bravewood.png';
+import Accello from '../../assets/accello.png';
 
 
 function ViewEmployee() {
@@ -59,7 +60,7 @@ function ViewEmployee() {
                                     <div className='bg- h-full w-full flex bg-inherit items-center flex-col '>
                                         <div className='w-full'>
                                             <div className='bg-primary w-full flex items-center flex-col h-[400px] 2xl:h-[500px]'>
-                                                <img src={Bravewood} alt="bravewood logo" className='max-w-[500px] mx-auto mt-7 w-[150px]' />
+                                                <img src={`${data?.company === 'BRAVEWOOD' ? Bravewood : Accello }`} alt="bravewood logo" className='max-w-[500px] mx-auto mt-7 w-[150px]' />
                                                 <div className='p-1 border-4 border-secondary mt-[80px] 2xl:mt-[100px] rounded-full flex items-center justify-center bg-white flex-row'>
                                                     <div className='w-[160px] h-[160px] 2xl:w-[180px] 2xl:h-[180px] flex overflow-hidden items-center rounded-full flex-row justify-center'>
                                                         <img src={`${data?.avatar}`} alt="" />
